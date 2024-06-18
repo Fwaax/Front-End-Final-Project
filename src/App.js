@@ -24,31 +24,15 @@ function App() {
   } = useToken();
 
 
-  function newCards(cardList, favoriteList) {
-    console.log(`Exucting newCards`);
-    cardList.forEach(card => {
-      if (favoriteList.includes(card._id)) {
-        card.isLiked = true;
-        console.log(`Adding to new cards`);
-      }
-    })
-  }
-
-
-  function handleLike(cardID, isLiked) {
-    console.log(`LikeArray before`, favArr);
-    if (isLiked) {
-      setFavArr((prevLikeArray) => [
-        ...prevLikeArray,
-        cardID
-      ]);
-    }
-    else {
-      // setLikeArray(prevLikeArray.filter(card => card !== cardID))
-      setFavArr((prevLikeArray) => prevLikeArray.filter(card => card !== cardID));
-    }
-    // console.log(`LikeArray after`, favArr);
-  }
+  // function newCards(cardList, favoriteList) {
+  //   console.log(`Exucting newCards`);
+  //   cardList.forEach(card => {
+  //     if (favoriteList.includes(card._id)) {
+  //       card.isLiked = true;
+  //       console.log(`Adding to new cards`);
+  //     }
+  //   })
+  // }
 
 
   useEffect(() => {
@@ -67,7 +51,7 @@ function App() {
         });
         console.log(`newFavArray: `, newFavArray);
         // setFavArr((prevFavArray) => [...prevFavArray, ...newFavArray]);
-        newCards(cardList, newFavArray);
+        // newCards(cardList, newFavArray);
 
         // setFavArr((prevFavArray) => [...prevFavArray, cardList.filter((card) => card.isLiked === true)]);
         // setFavArr(cardList.filter((card) => card.isLiked === true));
@@ -127,9 +111,9 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} />} />
-          <Route path="/" element={<Body cards={cards} handleLike={handleLike} />} />
+          <Route path="/" element={<Body cards={cards} />} />
           <Route path="/mycards" element={<MyCardPage />} />
-          <Route path="/favorite" element={<MyFavCardPage cards={cards} handleLike={handleLike} />} />
+          <Route path="/favorite" element={<MyFavCardPage cards={cards} />} />
         </Routes>
       </BrowserRouter>
     </div>

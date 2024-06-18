@@ -8,7 +8,7 @@ import CardsForm from '../Cards/CardsForm'
 
 {/* <CardsForm /> */ }
 
-const Body = ({ cards, handleLike }) => {
+const Body = ({ cards }) => {
     const [displayCreateCardComp, setDisplayCreateCardComp] = useState(false)
 
     return (
@@ -26,7 +26,7 @@ const Body = ({ cards, handleLike }) => {
                         {displayCreateCardComp === false ?
                             <div>
                                 <div>
-                                    <CardsContainer cards={cards} handleLike={handleLike} />
+                                    <CardsContainer cards={cards} />
                                 </div>
                                 <h2 className='cardCreationBtn' onClick={() => setDisplayCreateCardComp(true)}>+</h2>
                             </div>

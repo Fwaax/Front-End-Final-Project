@@ -3,9 +3,10 @@ import './Card.css'
 import useToken from '../Hooks/UserToken';
 import axios from 'axios';
 
-const Card = ({ card, handleLike }) => {
+const Card = ({ card, refetch }) => {
     {/* img ,title , subtitle , phone , address , card number */ }
-    const [isLiked, setIsLiked] = useState(card?.isLiked || false);
+    console.log(`card: `, card);
+
 
     const {
         setUserToken,
@@ -13,14 +14,23 @@ const Card = ({ card, handleLike }) => {
         removeToken,
     } = useToken();
 
+    const [isLiked, setIsLiked] = useState(card?.likes?.includes(userToken?.decodedToken.payload._id) || false);
 
     async function handleClick() {
-        setIsLiked(!isLiked);
         const token = userToken.token;
         const apiResponse = await axios.patch(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${card._id}`, {}, { headers: { "x-auth-token": token } });
+        console.log(`apiResponse: `, apiResponse);
+        const userIDsThatLikedThisCard = apiResponse.data.likes;
+        console.log(`Here`);
+        console.log(userIDsThatLikedThisCard, userToken);
+        if (userIDsThatLikedThisCard.includes(userToken.decodedToken.payload._id)) {
+            setIsLiked(true);
+        }
+        else {
+            setIsLiked(false);
+        }
 
-        handleLike(card._id, !isLiked);
-        console.log(`Patching a card`, apiResponse.status);
+        refetch?.(userToken.decodedToken.payload._id)
     }
 
     async function handleDelete() {
@@ -33,7 +43,7 @@ const Card = ({ card, handleLike }) => {
         <div className='cardDiv'>
             <div className='cardTop'>
                 <img src={card.image?.url} alt={card.image?.alt} className='cardImg' />
-                <div className='cardId'>{card.id}</div>
+                {/* <div className='cardId'>{card._id}</div> */}
                 <div className='cardTitle'>{card.title}</div>
                 <div className='dividerCard'></div>
                 <div className='cardSubtitle'>{card.subtitle}</div>

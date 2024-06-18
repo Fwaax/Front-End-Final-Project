@@ -1,29 +1,49 @@
 import React, { useEffect, useState } from 'react'
-import MyFavCardsContainer from '../Components/Cards/MyFavCardContainer'
 import CardsContainer from '../Components/Cards/CardsContainer'
+import useToken from '../Components/Hooks/UserToken';
+import axios from 'axios';
 
 
-const MyFavCardPage = ({ cards, handleLike }) => {
+
+const MyFavCardPage = () => {
+
+
+    const {
+        setUserToken,
+        userToken,
+        removeToken,
+    } = useToken();
 
     const [favArr, setFavArr] = useState([]);
 
+
+    const fetchData = async (id) => {
+        try {
+            const apiResponse = await axios.get('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards');
+            const cardList = apiResponse.data;
+            const newFavArray = [];
+
+            cardList.forEach(card => {
+                if (card.likes.includes(id)) {
+                    newFavArray.push(card)
+                }
+            });
+            console.log(`newFavArray: `, newFavArray);
+            setFavArr(newFavArray);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
     useEffect(() => {
-        setFavArr(cards.filter((card) => card.isLiked === true));
-    }, [])
 
-    function handleLikeClick(cardID, isLiked) {
-        if (isLiked) {
-            setFavArr((prevLikeArray) => [
-                ...prevLikeArray,
-                cardID
-            ]);
-        }
-        else {
-            // setLikeArray(prevLikeArray.filter(card => card !== cardID))
-            setFavArr((prevLikeArray) => prevLikeArray.filter(card => card !== cardID));
-        }
-    }
 
+        if (userToken?.decodedToken?.payload?._id) {
+            fetchData(userToken?.decodedToken?.payload?._id);
+        }
+    }, []);
+
+    console.log(`favArr in MyFavCard line 44`, favArr);
 
     return (
 
@@ -35,7 +55,7 @@ const MyFavCardPage = ({ cards, handleLike }) => {
                 </div>
                 <div className='divider'></div>
                 <div className='cardsholder'>
-                    <CardsContainer cards={favArr} handleLike={handleLikeClick} />
+                    <CardsContainer cards={favArr} refetch={fetchData} />
                 </div>
             </div>
         </div>

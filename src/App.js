@@ -11,6 +11,7 @@ import axios from 'axios';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import EditCardPage from './Pages/EditCardPage';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -50,11 +51,6 @@ function App() {
           }
         });
         console.log(`newFavArray: `, newFavArray);
-        // setFavArr((prevFavArray) => [...prevFavArray, ...newFavArray]);
-        // newCards(cardList, newFavArray);
-
-        // setFavArr((prevFavArray) => [...prevFavArray, cardList.filter((card) => card.isLiked === true)]);
-        // setFavArr(cardList.filter((card) => card.isLiked === true));
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -113,6 +109,7 @@ function App() {
           <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} />} />
           <Route path="/" element={<Body cards={cards} />} />
           <Route path="/mycards" element={<MyCardPage />} />
+          <Route path="/editcard/:cardId" element={<EditCardPage />} />
           <Route path="/favorite" element={<MyFavCardPage cards={cards} />} />
         </Routes>
       </BrowserRouter>

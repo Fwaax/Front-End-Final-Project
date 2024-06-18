@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import './Card.css'
 import useToken from '../Hooks/UserToken';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ card, refetch }) => {
     {/* img ,title , subtitle , phone , address , card number */ }
-    console.log(`card: `, card);
+    const navigate = useNavigate();
 
 
     const {
@@ -33,6 +34,12 @@ const Card = ({ card, refetch }) => {
         refetch?.(userToken.decodedToken.payload._id)
     }
 
+
+
+    async function handleEdit() {
+        navigate(`/editcard/${card?._id}`)
+    }
+
     async function handleDelete() {
         const token = userToken.token;
         const apiResponse = await axios.delete(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${card._id}`, { headers: { "x-auth-token": token } });
@@ -53,7 +60,7 @@ const Card = ({ card, refetch }) => {
             <div className='svgHolder'>
                 <div className='svgHolderLeft'>
                     <img className='imgSvg bin' src="https://www.svgrepo.com/show/433921/bin.svg" alt="Delete" onClick={handleDelete} />
-                    <img className='imgSvg pencil' src="https://www.svgrepo.com/show/488318/pencil-ui.svg" alt="Edit" />
+                    <img className='imgSvg pencil' src="https://www.svgrepo.com/show/488318/pencil-ui.svg" alt="Edit" onClick={handleEdit} />
                 </div>
                 <div className='svgHolderRight'>
                     <img className='imgSvg phone' src="https://www.svgrepo.com/show/506672/phone.svg" alt="Phone Number" />

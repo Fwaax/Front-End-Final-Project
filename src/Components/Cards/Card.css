@@ -1,0 +1,62 @@
+.cardDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 5px;
+    width: 250px;
+    height: 400px;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.cardTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardImg {
+    width: 250px;
+    height: 250px;
+    border-radius: 5px 5px 0 0;
+}
+
+.dividerCard {
+    background-color: grey;
+    height: 1px;
+    width: 80%;
+}
+
+.cardId {}
+
+.cardTitle {}
+
+.cardSubtitle {}
+
+.cardPhone {}
+
+.cardAddres {}
+
+.svgHolder {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    gap: 6em;
+}
+
+.svgHolderLeft {
+    display: flex;
+    gap: 1em;
+}
+
+.svgHolderRight {
+    display: flex;
+    gap: 1em;
+}
+
+.imgSvg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

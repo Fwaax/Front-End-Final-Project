@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    background-color: #1976d3;
+}
+
+.nav {
+    display: flex;
+    padding: 1em;
+    font-weight: bold;
+    color: #fff;
+    justify-content: space-between;
+    width: 100vw;
+    font-size: 1.5em;
+}
+
+.navLeft {
+    display: flex;
+    gap: 1.5em;
+}
+
+.navRight {
+    display: flex;
+    gap: 1.5em;
+}
+
+.nav :hover {
+    cursor: pointer;
+}

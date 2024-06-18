@@ -1,0 +1,56 @@
+.containerBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e4f2fd;
+    row-gap: 2em;
+    width: 100vw;
+}
+
+.containerCards {
+    display: flex;
+    flex-direction: column;
+    width: 55vw;
+    gap: 1em;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 1em;
+}
+
+.divider {
+    height: 0.05em;
+    width: 90vw;
+    background-color: #8a8989;
+    display: flex;
+    align-self: center;
+}
+
+.cardsholder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 1em;
+}
+
+.cardPlaceHolder {
+    height: 25em;
+    width: 25em;
+    background-color: #8b4141;
+}
+
+.cardCreationBtn {
+    background-color: #1976d3;
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    color: #fff;
+    padding: 0.2em;
+    position: fixed;
+    right: 30px;
+    bottom: 150px;
+    cursor: pointer;
+}

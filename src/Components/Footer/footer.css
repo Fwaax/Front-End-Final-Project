@@ -1,0 +1,9 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: #ccc; */
+    width: 100vw;
+    box-shadow: 10px 5px 5px #ccc;
+    /* height: 10vh; */
+}

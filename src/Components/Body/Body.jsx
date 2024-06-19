@@ -1,15 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Bodyjsx.css'
 import Footer from '../Footer/Footer'
 import CardsContainer from '../Cards/CardsContainer'
 import CardsForm from '../Cards/CardsForm'
-// import CardsForm from '../Cards/CardsForm'
+import axios from 'axios'
+import useToken from '../Hooks/UserToken'
 
 
-{/* <CardsForm /> */ }
+const Body = () => {
 
-const Body = ({ cards }) => {
+    const {
+        setUserToken,
+        userToken,
+        removeToken,
+    } = useToken();
+
+    const [cards, setCards] = useState([]);
     const [displayCreateCardComp, setDisplayCreateCardComp] = useState(false)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const apiResponse = await axios.get('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards');
+                const cardList = apiResponse.data.slice(0, 5);
+                setCards(cardList);
+
+                const newFavArray = [];
+
+                cardList.forEach(card => {
+                    if (card.likes.includes(userToken?.decodedToken?.payload?._id)) {
+                        newFavArray.push(card._id)
+                    }
+                });
+                console.log(`newFavArray: `, newFavArray);
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        if (userToken?.decodedToken?.payload?._id) {
+            fetchData();
+        }
+    }, []);
 
     return (
         <div className='containerBody'>

@@ -31,13 +31,13 @@ const Card = ({ card, refetch }) => {
             setIsLiked(false);
         }
 
-        refetch?.(userToken.decodedToken.payload._id)
+        refetch?.(userToken.decodedToken.payload._id);
     }
 
 
 
     async function handleEdit() {
-        navigate(`/editcard/${card?._id}`)
+        navigate(`/editcard/${card?._id}`);
     }
 
     async function handleDelete() {
@@ -81,7 +81,3 @@ export default Card
 // https://www.svgrepo.com/show/497628/user-square.svg --- My Cards
 // https://www.svgrepo.com/
 
-
-// User likes or dislikes a card we have to do patch request to the card API
-
-// Delete function , calls the API to do stuff

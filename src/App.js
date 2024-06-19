@@ -13,10 +13,16 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import EditCardPage from './Pages/EditCardPage';
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+
 function App() {
-  const [cards, setCards] = useState([]);
-  const [favArr, setFavArr] = useState([]);
+
   const [isLoged, setIsLoged] = useState(false);
+  const queryClient = new QueryClient()
 
   const {
     setUserToken,
@@ -25,95 +31,59 @@ function App() {
   } = useToken();
 
 
-  // function newCards(cardList, favoriteList) {
-  //   console.log(`Exucting newCards`);
-  //   cardList.forEach(card => {
-  //     if (favoriteList.includes(card._id)) {
-  //       card.isLiked = true;
-  //       console.log(`Adding to new cards`);
-  //     }
-  //   })
-  // }
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiResponse = await axios.get('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards');
-        const cardList = apiResponse.data.slice(0, 5);
-        setCards(cardList);
-
-        const newFavArray = [];
-
-        cardList.forEach(card => {
-          if (card.likes.includes(userToken?.decodedToken?.payload?._id)) {
-            newFavArray.push(card._id)
-          }
-        });
-        console.log(`newFavArray: `, newFavArray);
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    if (userToken?.decodedToken?.payload?._id) {
-      fetchData();
-    }
-  }, []);
-
-
   function handleLogOut() {
     setIsLoged(false);
     removeToken();
   }
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <div className='container'>
-          <nav className='nav'>
-            <ul>
-              <div className='navLeft'>
-                <li><Link to="/">BCard</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/favorite">Fav Cards</Link></li>
-                <li><Link to="/mycards">My Cards</Link></li>
-              </div>
-            </ul>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <BrowserRouter>
+          <div className='container'>
+            <nav className='nav'>
+              <ul>
+                <div className='navLeft'>
+                  <li><Link to="/">BCard</Link></li>
+                  <li><Link to="/about">About</Link></li>
+                  <li><Link to="/favorite">Fav Cards</Link></li>
+                  <li><Link to="/mycards">My Cards</Link></li>
+                </div>
+              </ul>
 
-            <ul>
-              <div className='navRight'>
-                <li><input type="text" placeholder="Search" /></li>
-                <li><div>Light/Dark mode</div></li>
-                {!userToken.token ? (
-                  <div>
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/signup">Sign up</Link></li>
-                  </div>
-                ) : (
-                  <div>
-                    <li>Hello {userToken.decodedToken.payload._id}</li>
-                    <div onClick={handleLogOut}>
-                      <li>Sign out</li>
+              <ul>
+                <div className='navRight'>
+                  <li><input type="text" placeholder="Search" /></li>
+                  <li><div>Light/Dark mode</div></li>
+                  {!userToken.token ? (
+                    <div>
+                      <li><Link to="/login">Login</Link></li>
+                      <li><Link to="/signup">Sign up</Link></li>
                     </div>
-                  </div>
-                )}
-              </div>
-            </ul>
-          </nav>
-        </div>
+                  ) : (
+                    <div>
+                      <li>Hello {userToken.decodedToken.payload._id}</li>
+                      <div onClick={handleLogOut}>
+                        <li>Sign out</li>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ul>
+            </nav>
+          </div>
 
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} />} />
-          <Route path="/" element={<Body cards={cards} />} />
-          <Route path="/mycards" element={<MyCardPage />} />
-          <Route path="/editcard/:cardId" element={<EditCardPage />} />
-          <Route path="/favorite" element={<MyFavCardPage cards={cards} />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+          <Routes>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} />} />
+            <Route path="/" element={<Body />} />
+            <Route path="/mycards" element={<MyCardPage />} />
+            <Route path="/editcard/:cardId" element={<EditCardPage />} />
+            <Route path="/favorite" element={<MyFavCardPage />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </QueryClientProvider>
   );
 }
 

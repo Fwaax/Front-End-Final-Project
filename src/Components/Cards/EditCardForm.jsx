@@ -16,7 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Card from './CardObjClassComp';
 
-const EditCardsForm = ({ setDisplayCreateCardComp }) => {
+const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCancelClick }) => {
 
 
     function Copyright(props) {
@@ -90,6 +90,8 @@ const EditCardsForm = ({ setDisplayCreateCardComp }) => {
                                         id="title"
                                         label="Title"
                                         autoFocus
+                                        value={cardDataToEdit.title}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, title: e.target.value })}
                                     />
                                 </Grid>
 
@@ -263,7 +265,7 @@ const EditCardsForm = ({ setDisplayCreateCardComp }) => {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
-                                onClick={() => setDisplayCreateCardComp(false)}
+                                onClick={() => onEditClick()}
                             >
                                 Edit
                             </Button>
@@ -273,9 +275,9 @@ const EditCardsForm = ({ setDisplayCreateCardComp }) => {
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
-                                    onClick={() => setDisplayCreateCardComp(false)}
+                                    onClick={() => onCancelClick()}
                                 >
-                                    Cancel
+                                    Reset
                                 </Button>
                             </Grid>
                         </Box>

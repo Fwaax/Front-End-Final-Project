@@ -41,7 +41,7 @@ const EditCardPage = ({ match }) => {
         removeToken,
     } = useToken();
 
-    const { data: fetchedCardData, isLoading: isFetchedCardDataLoading, isError: isFetchedCardDataErrored } = useQuery({
+    const { data: fetchedCardData, isLoading: isFetchedCardDataLoading, isError: isFetchedCardDataErrored, refetch: refetchCardData } = useQuery({
         staleTime: 60000,
         gcTime: 60000,
         queryKey: ["cardDataFromServer"],
@@ -51,26 +51,7 @@ const EditCardPage = ({ match }) => {
                     headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' }
                 });
                 console.log(`apiResponse edit in Quary: `, apiResponse);
-                setCardDataToEdit({
-                    "title": apiResponse.data.title,
-                    "subtitle": apiResponse.data.subtitle,
-                    "description": apiResponse.data.description,
-                    "phone": apiResponse.data.phone,
-                    "email": apiResponse.data.email,
-                    "web": apiResponse.data.web,
-                    "image": {
-                        "url": apiResponse.data.image.url,
-                        "alt": apiResponse.data.image.alt
-                    },
-                    "address": {
-                        "state": apiResponse.data.address.state,
-                        "country": apiResponse.data.address.country,
-                        "city": apiResponse.data.address.city,
-                        "street": apiResponse.data.address.street,
-                        "houseNumber": apiResponse.data.address.houseNumber,
-                        "zip": apiResponse.data.address.zip
-                    }
-                })
+                resetData(apiResponse.data)
                 return apiResponse.data;
             } catch (e) {
                 console.log(`An Error Occurd: `, e);
@@ -82,11 +63,39 @@ const EditCardPage = ({ match }) => {
 
 
     async function sendUpdateCardData() {
-        const apiResponse = await axios.put(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, {
+        console.log(`About to Request: `, cardDataToEdit);
+        const apiResponse = await axios.put(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, cardDataToEdit, {
             headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' },
-            data: cardDataToEdit,
         });
         console.log(`apiResponse edit 2: `, apiResponse);
+        refetchCardData();
+    }
+
+    function resetData(cardDataToSet) {
+        if (!cardDataToSet) {
+            console.log(`cardDataToSet is Undefined Cannot procced:`, cardDataToSet);
+            return
+        }
+        setCardDataToEdit({
+            "title": cardDataToSet.title,
+            "subtitle": cardDataToSet.subtitle,
+            "description": cardDataToSet.description,
+            "phone": cardDataToSet.phone,
+            "email": cardDataToSet.email,
+            "web": cardDataToSet.web,
+            "image": {
+                "url": cardDataToSet.image.url,
+                "alt": cardDataToSet.image.alt
+            },
+            "address": {
+                "state": cardDataToSet.address.state,
+                "country": cardDataToSet.address.country,
+                "city": cardDataToSet.address.city,
+                "street": cardDataToSet.address.street,
+                "houseNumber": cardDataToSet.address.houseNumber,
+                "zip": cardDataToSet.address.zip
+            }
+        })
     }
 
 
@@ -107,7 +116,7 @@ const EditCardPage = ({ match }) => {
         <div>
             <p>cardId: {cardId}</p>
             <Card card={fetchedCardData} />
-            {/* <EditCardsForm /> */}
+            <EditCardsForm cardDataToEdit={cardDataToEdit} setCardDataToEdit={setCardDataToEdit} onEditClick={sendUpdateCardData} onCancelClick={() => resetData(fetchedCardData)} />
 
         </div>
     )

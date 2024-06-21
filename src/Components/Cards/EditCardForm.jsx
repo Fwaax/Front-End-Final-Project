@@ -104,6 +104,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         id="subtitle"
                                         label="Sub title"
                                         autoFocus
+                                        value={cardDataToEdit.subtitle}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, subtitle: e.target.value })}
                                     />
                                 </Grid>
 
@@ -116,6 +118,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         id="description"
                                         label="Description"
                                         name="description"
+                                        value={cardDataToEdit.description}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, description: e.target.value })}
                                     />
                                 </Grid>
 
@@ -127,8 +131,10 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         fullWidth
                                         id="phoneCard"
                                         label="Phone"
-                                        type="number"
+                                        type="text"
                                         name="phoneCard"
+                                        value={cardDataToEdit.phone}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, phone: e.target.value })}
                                     />
                                 </Grid>
 
@@ -141,6 +147,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         id="emailCard"
                                         label="Email Address"
                                         name="emailCard"
+                                        value={cardDataToEdit.email}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, email: e.target.value })}
                                     />
                                 </Grid>
 
@@ -153,6 +161,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="Web"
                                         type="web"
                                         id="web"
+                                        value={cardDataToEdit.web}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, web: e.target.value })}
                                     />
                                 </Grid>
 
@@ -165,6 +175,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="Img URL"
                                         type="url"
                                         id="imgurlCard"
+                                        value={cardDataToEdit.imgurl}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, imgurl: e.target.value })}
                                     />
                                 </Grid>
 
@@ -177,6 +189,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="Img ALT"
                                         type="text"
                                         id="imgaltCard"
+                                        value={cardDataToEdit.imgalt}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, imgalt: e.target.value })}
                                     />
                                 </Grid>
 
@@ -189,6 +203,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="State"
                                         type="text"
                                         id="StateCard"
+                                        value={cardDataToEdit.state}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, state: e.target.value })}
                                     />
                                 </Grid>
 
@@ -202,6 +218,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="Country"
                                         type="text"
                                         id="countryCard"
+                                        value={cardDataToEdit.country}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, country: e.target.value })}
                                     />
                                 </Grid>
 
@@ -215,6 +233,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="City"
                                         type="text"
                                         id="cityCard"
+                                        value={cardDataToEdit.city}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, city: e.target.value })}
                                     />
                                 </Grid>
 
@@ -228,6 +248,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="Street"
                                         type="text"
                                         id="streetCard"
+                                        value={cardDataToEdit.street}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, street: e.target.value })}
                                     />
                                 </Grid>
 
@@ -241,6 +263,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="House Number"
                                         type="number"
                                         id="houseNumberCard"
+                                        value={cardDataToEdit.houseNumber}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, houseNumber: e.target.value })}
                                     />
                                 </Grid>
 
@@ -253,6 +277,8 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                                         label="Zip"
                                         type="number"
                                         id="zipCard"
+                                        value={cardDataToEdit.houseNumber}
+                                        onChange={(e) => setCardDataToEdit({ ...cardDataToEdit, houseNumber: e.target.value })}
                                     />
                                 </Grid>
 

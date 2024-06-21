@@ -5,12 +5,13 @@
     background-color: #e4f2fd;
     row-gap: 2em;
     width: 100vw;
+    height: 100vh;
 }
 
 .containerCards {
     display: flex;
     flex-direction: column;
-    width: 55vw;
+    width: 58vw;
     gap: 1em;
 }
 

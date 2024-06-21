@@ -73,7 +73,6 @@ const Body = () => {
 
 
             </div>
-            <Footer />
         </div>
     )
 }

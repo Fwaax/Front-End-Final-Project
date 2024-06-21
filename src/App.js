@@ -17,6 +17,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import AboutPage from './Pages/AboutPage';
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
 
           <Routes>
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} />} />
             <Route path="/" element={<Body />} />
             <Route path="/mycards" element={<MyCardPage />} />
@@ -82,6 +84,8 @@ function App() {
             <Route path="/favorite" element={<MyFavCardPage />} />
           </Routes>
         </BrowserRouter>
+
+        <Footer />
       </div>
     </QueryClientProvider>
   );

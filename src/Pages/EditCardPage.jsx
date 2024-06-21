@@ -83,18 +83,14 @@ const EditCardPage = ({ match }) => {
             "phone": cardDataToSet.phone,
             "email": cardDataToSet.email,
             "web": cardDataToSet.web,
-            "image": {
-                "url": cardDataToSet.image.url,
-                "alt": cardDataToSet.image.alt
-            },
-            "address": {
-                "state": cardDataToSet.address.state,
-                "country": cardDataToSet.address.country,
-                "city": cardDataToSet.address.city,
-                "street": cardDataToSet.address.street,
-                "houseNumber": cardDataToSet.address.houseNumber,
-                "zip": cardDataToSet.address.zip
-            }
+            "imgurl": cardDataToSet.image.url,
+            "imgalt": cardDataToSet.image.alt,
+            "state": cardDataToSet.address.state,
+            "country": cardDataToSet.address.country,
+            "city": cardDataToSet.address.city,
+            "street": cardDataToSet.address.street,
+            "houseNumber": cardDataToSet.address.houseNumber,
+            "zip": cardDataToSet.address.zip
         })
     }
 

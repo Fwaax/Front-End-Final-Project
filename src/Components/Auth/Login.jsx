@@ -32,7 +32,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Login(setIsLoged, isLoged) {
+export default function Login({ setIsLoged, isLoged, setUserLoggedForImg }) {
 
     const {
         setUserToken,
@@ -55,6 +55,17 @@ export default function Login(setIsLoged, isLoged) {
             return null;
         }
     }
+
+
+    async function getImgFromId(token) {
+        const userID = parseJWT(token).payload._id;
+        const apiResponse = await axios.get(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${userID}`, { headers: { "x-auth-token": token } });
+        const userImgUrl = apiResponse.data.image.url;
+        localStorage.setItem(`imgUrl`, userImgUrl)
+        console.log(`userImgUrl: `, userImgUrl);
+        setUserLoggedForImg(userImgUrl);
+    }
+
 
     const handleSubmit = async (event) => {
         try {
@@ -80,7 +91,8 @@ export default function Login(setIsLoged, isLoged) {
             setUserToken(token) // <---------------------------------------------------------------
             // localStorage.setItem(`token`, JSON.stringify(decodedToken))          // <--------------------------
             // console.log(`decodedToken.payload : ${decodedToken.payload._id}`);
-            // setUserToken(decodedToken.payload._id, token);                              // <--------------------------
+            // setUserToken(decodedToken.payload._id, token); 
+            getImgFromId(token);                     // <--------------------------
             navigate("/");
         }
         catch (err) {

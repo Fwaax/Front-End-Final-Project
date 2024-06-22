@@ -15,6 +15,7 @@ const Card = ({ card, refetch }) => {
         removeToken,
     } = useToken();
 
+
     const [isLiked, setIsLiked] = useState(card?.likes?.includes(userToken?.decodedToken.payload._id) || false);
 
     async function handleClick() {

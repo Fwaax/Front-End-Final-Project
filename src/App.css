@@ -56,3 +56,16 @@
 ul {
   list-style-type: none;
 }
+
+.userImg {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
+
+.rightNavImgAndLogout {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}

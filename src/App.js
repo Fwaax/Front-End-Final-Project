@@ -22,6 +22,7 @@ import AboutPage from './Pages/AboutPage';
 
 function App() {
 
+  const [UserLoggedForImg, setUserLoggedForImg] = useState(localStorage.getItem(`imgUrl`));
   const [isLoged, setIsLoged] = useState(false);
   const queryClient = new QueryClient()
 
@@ -36,6 +37,8 @@ function App() {
     setIsLoged(false);
     removeToken();
   }
+
+  console.log(`UserLoggedForImg: `, UserLoggedForImg);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -62,8 +65,8 @@ function App() {
                       <li><Link to="/signup">Sign up</Link></li>
                     </div>
                   ) : (
-                    <div>
-                      <li>Hello {userToken.decodedToken.payload._id}</li>
+                    <div className='rightNavImgAndLogout'>
+                      <li ><img className='userImg' src={UserLoggedForImg} alt="userImg" /></li>
                       <div onClick={handleLogOut}>
                         <li>Sign out</li>
                       </div>
@@ -77,7 +80,7 @@ function App() {
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} />} />
+            <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} setUserLoggedForImg={setUserLoggedForImg} />} />
             <Route path="/" element={<Body />} />
             <Route path="/mycards" element={<MyCardPage />} />
             <Route path="/editcard/:cardId" element={<EditCardPage />} />

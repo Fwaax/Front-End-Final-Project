@@ -116,8 +116,6 @@ export default function SignUp() {
         })
     };
 
-    // console.log(inputValues);
-
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">

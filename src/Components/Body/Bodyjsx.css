@@ -55,3 +55,19 @@
     bottom: 150px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 1024px) {
+    .containerBody {
+        width: 100vw;
+        height: max-content;
+    }
+}
+
+@media screen and (max-width: 903px) {
+    .containerCards {
+        width: 30vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -6,8 +6,8 @@ const MyCardPage = () => {
 
     return (
 
-        <div className='containerBody'>
-            <div className='containerCards'>
+        <div className='containerBody containerBodyMyCard'>
+            <div className='containerCards containerCardsMyCard'>
                 <div className='header'>
                     <h1>My Cards Page</h1>
                     <p>Here you can find your business cards</p>

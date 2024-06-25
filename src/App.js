@@ -46,6 +46,52 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <div className='container'>
+
+
+
+
+            <div>
+              <button className='burgerIcon'>☰
+                <nav className='navBurger'>
+                  <ul>
+                    <div className='navLeft'>
+                      <li><Link className='link' to="/">BCard</Link></li>
+                      <li><Link className='link' to="/about">About</Link></li>
+                      <li><Link className='link' to="/favorite">Fav Cards</Link></li>
+                      <li><Link className='link' to="/mycards">My Cards</Link></li>
+                    </div>
+                  </ul>
+
+                  <ul>
+                    <div className='navRight'>
+                      {/* <li><input type="text" placeholder="Search" /></li> */}
+                      <li><div>Light/Dark mode</div></li>
+                      {!userToken.token ? (
+                        <div className='rightNavLogContainer'>
+                          <li><Link className='link' to="/login">Login</Link></li>
+                          <li><Link className='link' to="/signup">Sign up</Link></li>
+                        </div>
+                      ) : (
+                        <div className='rightNavImgAndLogout'>
+                          <li ><img className='userImg' src={UserLoggedForImg} alt="userImg" /></li>
+                          <div onClick={handleLogOut}>
+                            <li>Sign out</li>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </ul>
+                </nav>
+              </button>
+            </div>
+
+
+
+
+
+
+
+
             <nav className='nav'>
               <ul>
                 <div className='navLeft'>

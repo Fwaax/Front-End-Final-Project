@@ -19,18 +19,18 @@ import Card from './CardObjClassComp';
 const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCancelClick }) => {
 
 
-    function Copyright(props) {
-        return (
-            <Typography variant="body2" color="text.secondary" align="center" {...props}>
-                {'Copyright © '}
-                <Link color="inherit" href="https://mui.com/">
-                    Your Website
-                </Link>{' '}
-                {new Date().getFullYear()}
-                {'.'}
-            </Typography>
-        );
-    }
+    // function Copyright(props) {
+    //     return (
+    //         <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    //             {'Copyright © '}
+    //             <Link color="inherit" href="https://mui.com/">
+    //                 Your Website
+    //             </Link>{' '}
+    //             {new Date().getFullYear()}
+    //             {'.'}
+    //         </Typography>
+    //     );
+    // }
 
     // Need to connect to Data on line 39 somehow
     const defaultTheme = createTheme();
@@ -308,7 +308,7 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
                             </Grid>
                         </Box>
                     </Box>
-                    <Copyright sx={{ mt: 5 }} />
+                    {/* <Copyright sx={{ mt: 5 }} /> */}
                 </Container>
             </ThemeProvider>
 

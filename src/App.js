@@ -24,7 +24,7 @@ function App() {
 
   const [UserLoggedForImg, setUserLoggedForImg] = useState(localStorage.getItem(`imgUrl`));
   const [isLoged, setIsLoged] = useState(false);
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   const {
     setUserToken,
@@ -32,13 +32,14 @@ function App() {
     removeToken,
   } = useToken();
 
-
   function handleLogOut() {
     setIsLoged(false);
     removeToken();
   }
 
   console.log(`UserLoggedForImg: `, UserLoggedForImg);
+
+  console.log({ userToken });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -48,10 +49,10 @@ function App() {
             <nav className='nav'>
               <ul>
                 <div className='navLeft'>
-                  <li><Link to="/">BCard</Link></li>
-                  <li><Link to="/about">About</Link></li>
-                  <li><Link to="/favorite">Fav Cards</Link></li>
-                  <li><Link to="/mycards">My Cards</Link></li>
+                  <li><Link className='link' to="/">BCard</Link></li>
+                  <li><Link className='link' to="/about">About</Link></li>
+                  <li><Link className='link' to="/favorite">Fav Cards</Link></li>
+                  <li><Link className='link' to="/mycards">My Cards</Link></li>
                 </div>
               </ul>
 
@@ -60,9 +61,9 @@ function App() {
                   <li><input type="text" placeholder="Search" /></li>
                   <li><div>Light/Dark mode</div></li>
                   {!userToken.token ? (
-                    <div>
-                      <li><Link to="/login">Login</Link></li>
-                      <li><Link to="/signup">Sign up</Link></li>
+                    <div className='rightNavLogContainer'>
+                      <li><Link className='link' to="/login">Login</Link></li>
+                      <li><Link className='link' to="/signup">Sign up</Link></li>
                     </div>
                   ) : (
                     <div className='rightNavImgAndLogout'>
@@ -80,7 +81,7 @@ function App() {
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} setUserLoggedForImg={setUserLoggedForImg} />} />
+            <Route path="/login" element={<Login setIsLoged={setIsLoged} isLoged={isLoged} setUserLoggedForImg={setUserLoggedForImg} setUserToken={setUserToken} />} />
             <Route path="/" element={<Body />} />
             <Route path="/mycards" element={<MyCardPage />} />
             <Route path="/editcard/:cardId" element={<EditCardPage />} />

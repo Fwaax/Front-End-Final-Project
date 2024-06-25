@@ -17,31 +17,18 @@ import { jwtDecode } from 'jwt-decode';
 import useToken from '../Hooks/UserToken';
 import { useNavigate } from 'react-router-dom';
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 const defaultTheme = createTheme();
 
-export default function Login({ setIsLoged, isLoged, setUserLoggedForImg }) {
+export default function Login({ setIsLoged, isLoged, setUserLoggedForImg, setLogSuccessful, setUserToken }) {
 
-    const {
-        setUserToken,
-        userToken,
-        removeToken
-    } = useToken();
+    // const {
+    //     setUserToken,
+    //     userToken,
+    //     removeToken
+    // } = useToken();
 
     const [errorMsg, setErrorMsg] = useState('');
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     async function asyncPost(url, json) {
         let token = null
@@ -77,22 +64,15 @@ export default function Login({ setIsLoged, isLoged, setUserLoggedForImg }) {
             }
             const url = `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login`
             const token = await asyncPost(url, json);
-            isLoged = true; // <---------------------------------------------------------------------------------------------
+            isLoged = true;
             console.log(`isLoged(must be true)`, isLoged);
             console.log(`token line 70`, token);
             if (token == null) {
-                // console.log(`Token recieved is null`);
                 return
             }
-            // console.log(`token outside axios : ${token}`, JSON.stringify(token));
-            // const decodedToken = parseJWT(token);
-
-
-            setUserToken(token) // <---------------------------------------------------------------
-            // localStorage.setItem(`token`, JSON.stringify(decodedToken))          // <--------------------------
-            // console.log(`decodedToken.payload : ${decodedToken.payload._id}`);
-            // setUserToken(decodedToken.payload._id, token); 
-            getImgFromId(token);                     // <--------------------------
+            setUserToken(token);
+            console.log(`setUserToken: `, setUserToken);
+            getImgFromId(token);
             navigate("/");
         }
         catch (err) {
@@ -160,7 +140,6 @@ export default function Login({ setIsLoged, isLoged, setUserLoggedForImg }) {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
             </Container>
         </ThemeProvider>
     );

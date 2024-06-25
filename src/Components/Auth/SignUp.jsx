@@ -15,19 +15,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 function stringToBoolean(string) {
     if (typeof string == "string") {
         if (string == "true") {
@@ -43,9 +30,7 @@ function formToJSON(form) {
             first: form.get('firstName'), middle: form.get('middleName'), last: form.get('lastName')
         },
         phone: form.get('phone'), email: form.get('email'), password: form.get('password'),
-        image: {
-            url: form.get('imgurl'), alt: form.get('imgalt')
-        },
+        image: { url: form.get('imgurl'), alt: form.get('imgalt') },
         address: {
             state: form.get('state'), country: form.get('country'), city: form.get('city'),
             street: form.get('street'), houseNumber: form.get('houseNumber'), zip: form.get('zip')
@@ -135,99 +120,80 @@ export default function SignUp() {
                                     autoComplete="given-name" name="firstName"
                                     onChange={(e) => setInputValues({ ...inputValues, firstNameValue: e.target.value })}
                                     error={!isFirstNameValid} required fullWidth id="firstName" label="First Name" autoFocus helperText={isFirstNameValid ? "" : "Name must be longer than 2 letters and must not contain any numbers "} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="given-name" name="middleName"
                                     onChange={(e) => setInputValues({ ...inputValues, middleNameValue: e.target.value })}
                                     error={!isMiddleNameValid} fullWidth id="middleName" label="Middle Name" autoFocus />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, lastNameValue: e.target.value })}
                                     error={!isLastNameValid} fullWidth id="lastName" label="Last Name" name="lastName" helperText={isLastNameValid ? "" : "Last name must be longer than 2 letters and must not contain any numbers "} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, phoneValue: e.target.value })}
                                     error={!isPhoneValid} fullWidth id="phone" label="Phone" type="number" name="phone" helperText={isPhoneValid ? "" : "Your phone number must be a valid phone number "} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, emailValue: e.target.value })}
                                     error={!isEmailValid} fullWidth id="email" label="Email Address" name="email" helperText={isEmailValid ? "" : "Must be a valid email address"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, passwordValue: e.target.value })}
                                     error={!isPasswordValid} fullWidth name="password" label="Password" type="password" id="password" helperText={isPasswordValid ? "" : "User password must be at least 8 characters long and contain an uppercase letter , a lowercase letter , a number and of the following characters !@#$%^&*-"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     onChange={(e) => setInputValues({ ...inputValues, imgUrlValue: e.target.value })}
                                     error={!isUrlValid} fullWidth name="imgurl" label="Img URL" type="url" id="imgurl" helperText={isUrlValid ? "" : "Must be a valid image URL"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     onChange={(e) => setInputValues({ ...inputValues, imgAltValue: e.target.value })}
                                     fullWidth name="imgalt" label="Img ALT" type="text" id="imgalt" />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     onChange={(e) => setInputValues({ ...inputValues, stateValue: e.target.value })}
                                     error={!isStateNameValid} fullWidth name="state" label="State" type="text" id="State" helperText={isStateNameValid ? "" : "Must be a valid State"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, countryValue: e.target.value })}
                                     error={!isCountryNameValid} fullWidth name="country" label="Country" type="text" id="country" helperText={isCountryNameValid ? "" : "Must be a valid Country"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, cityValue: e.target.value })}
                                     error={!isCityNameValid} fullWidth name="city" label="City" type="text" id="city" helperText={isCityNameValid ? "" : "Must be a valid City"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, streetValue: e.target.value })}
                                     error={!isStreetNameValid} fullWidth name="street" label="Street" type="text" id="street" helperText={isStreetNameValid ? "" : "Must be a valid Street"} />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     onChange={(e) => setInputValues({ ...inputValues, houseNumberValue: e.target.value })}
                                     fullWidth name="houseNumber" label="House Number" type="number" id="houseNumber" />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            </Grid><Grid item xs={12} sm={6}>
                                 <TextField
                                     onChange={(e) => setInputValues({ ...inputValues, zipValue: e.target.value })}
                                     fullWidth name="zip" label="Zip" type="number" id="zip" />
-                            </Grid>
-                            <Grid item xs={12}>
+                            </Grid><Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="true" color="primary" name="isBusiness" />}
                                     label="Signup as business."
                                     onChange={(e) => setInputValues({ ...inputValues, isBusinessValue: e.target.checked })} />
-                            </Grid>
-                        </Grid>
+                            </Grid></Grid>
                         <Button
                             type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >Sign Up</Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2"> Already have an account? Sign in </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
+                            </Grid></Grid></Box></Box>
                 {errorMsg && <div>Error: {errorMsg}</div>}
-                <Copyright sx={{ mt: 5 }} />
             </Container>
         </ThemeProvider>
     );

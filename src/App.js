@@ -133,9 +133,9 @@ function App() {
             <Route path="/editcard/:cardId" element={<EditCardPage />} />
             <Route path="/favorite" element={<MyFavCardPage />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
 
-        <Footer />
       </div>
     </QueryClientProvider>
   );

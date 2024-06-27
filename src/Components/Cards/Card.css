@@ -6,9 +6,12 @@
     border-radius: 5px;
     width: 250px;
     height: 400px;
-    /* align-items: center; */
     justify-content: space-between;
     margin-bottom: 1em;
+}
+
+#dark .cardDiv {
+    background-color: var(--background-body-color-light);
 }
 
 .cardTop {
@@ -28,16 +31,6 @@
     height: 1px;
     width: 80%;
 }
-
-.cardId {}
-
-.cardTitle {}
-
-.cardSubtitle {}
-
-.cardPhone {}
-
-.cardAddres {}
 
 .svgHolder {
     display: flex;

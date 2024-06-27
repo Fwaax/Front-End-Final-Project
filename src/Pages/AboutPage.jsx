@@ -1,9 +1,15 @@
 import React from 'react';
 import './AboutPage.css'
+import { ThemeContext } from '../App';
+import { useContext } from 'react';
+
 
 const AboutPage = () => {
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
     return (
-        <div className='aboutContainer'>
+        <div className='aboutContainer' id={theme}>
 
             <div className='textContainer'>
                 This is About Page about the project and how to use it

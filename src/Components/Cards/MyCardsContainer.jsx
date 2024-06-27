@@ -27,7 +27,7 @@ const MyCardsContainer = () => {
                     setShowNoCardMessege(true);
                     return
                 }
-                const cardList = apiResponse.data.slice(0, 5);
+                const cardList = apiResponse.data;
                 setCards(cardList);
             } catch (error) {
                 console.error('Error fetching data:', error);

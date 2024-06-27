@@ -6,10 +6,6 @@ import Card from '../Components/Cards/Card';
 import EditCardsForm from '../Components/Cards/EditCardForm';
 import { useQuery } from "@tanstack/react-query";
 
-// https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/65422172e443ec28a252c27d
-// take info from create page 
-// 
-
 const EditCardPage = ({ match }) => {
     const [cardDataToEdit, setCardDataToEdit] = useState({  // new data on fields
 
@@ -19,18 +15,14 @@ const EditCardPage = ({ match }) => {
         "phone": ``,
         "email": ``,
         "web": ``,
-        "image": {
-            "url": ``,
-            "alt": ``
-        },
-        "address": {
-            "state": ``,
-            "country": ``,
-            "city": ``,
-            "street": ``,
-            "houseNumber": ``,
-            "zip": ``
-        }
+        "imgurl": '',
+        "imgalt": '',
+        "state": ``,
+        "country": ``,
+        "city": ``,
+        "street": ``,
+        "houseNumber": ``,
+        "zip": ``
     });
     const { cardId } = useParams();
     console.log(cardId);
@@ -40,6 +32,8 @@ const EditCardPage = ({ match }) => {
         userToken,
         removeToken,
     } = useToken();
+
+
 
     const { data: fetchedCardData, isLoading: isFetchedCardDataLoading, isError: isFetchedCardDataErrored, refetch: refetchCardData } = useQuery({
         staleTime: 60000,
@@ -63,12 +57,35 @@ const EditCardPage = ({ match }) => {
 
 
     async function sendUpdateCardData() {
-        console.log(`About to Request: `, cardDataToEdit);
-        const apiResponse = await axios.put(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, cardDataToEdit, {
-            headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' },
-        });
-        console.log(`apiResponse edit 2: `, apiResponse);
-        refetchCardData();
+        try {
+            const req = {
+                "title": cardDataToEdit.title,
+                "subtitle": cardDataToEdit.subtitle,
+                "description": cardDataToEdit.description,
+                "phone": cardDataToEdit.phone,
+                "email": cardDataToEdit.email,
+                "web": cardDataToEdit.web,
+                "image": {
+                    "url": cardDataToEdit.imgurl,
+                    "alt": cardDataToEdit.alt
+                },
+                "address": {
+                    "state": cardDataToEdit.state,
+                    "country": cardDataToEdit.country,
+                    "city": cardDataToEdit.city,
+                    "street": cardDataToEdit.street,
+                    "houseNumber": cardDataToEdit.houseNumber,
+                    "zip": cardDataToEdit.zip
+                }
+            }
+            const apiResponse = await axios.put(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, req, {
+                headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' },
+            });
+            console.log(`apiResponse edit 2: `, apiResponse);
+            refetchCardData();
+        } catch (e) {
+            console.log(`An Error Occurd: `, e);
+        }
     }
 
     function resetData(cardDataToSet) {

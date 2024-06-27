@@ -16,7 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Card from './CardObjClassComp';
 
-const CardsForm = ({ setDisplayCreateCardComp }) => {
+const CardsForm = ({ setDisplayCreateCardComp, cardDataToSubmit, setCardDataToSubmit, onSubmitClick, onCancelClick }) => {
 
 
     const defaultTheme = createTheme();
@@ -76,6 +76,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         id="title"
                                         label="Title"
                                         autoFocus
+                                        value={cardDataToSubmit.title}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, title: e.target.value })}
                                     />
                                 </Grid>
 
@@ -88,6 +90,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         id="subtitle"
                                         label="Sub title"
                                         autoFocus
+                                        value={cardDataToSubmit.subtitle}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, subtitle: e.target.value })}
                                     />
                                 </Grid>
 
@@ -100,6 +104,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         id="description"
                                         label="Description"
                                         name="description"
+                                        value={cardDataToSubmit.description}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, description: e.target.value })}
                                     />
                                 </Grid>
 
@@ -113,6 +119,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Phone"
                                         type="number"
                                         name="phoneCard"
+                                        value={cardDataToSubmit.phone}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, phone: e.target.value })}
                                     />
                                 </Grid>
 
@@ -125,6 +133,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         id="emailCard"
                                         label="Email Address"
                                         name="emailCard"
+                                        value={cardDataToSubmit.email}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, email: e.target.value })}
                                     />
                                 </Grid>
 
@@ -137,6 +147,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Web"
                                         type="web"
                                         id="web"
+                                        value={cardDataToSubmit.web}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, web: e.target.value })}
                                     />
                                 </Grid>
 
@@ -149,6 +161,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Img URL"
                                         type="url"
                                         id="imgurlCard"
+                                        value={cardDataToSubmit.imgurl}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, imgurl: e.target.value })}
                                     />
                                 </Grid>
 
@@ -161,6 +175,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Img ALT"
                                         type="text"
                                         id="imgaltCard"
+                                        value={cardDataToSubmit.imgalt}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, imgalt: e.target.value })}
                                     />
                                 </Grid>
 
@@ -173,6 +189,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="State"
                                         type="text"
                                         id="StateCard"
+                                        value={cardDataToSubmit.state}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, state: e.target.value })}
                                     />
                                 </Grid>
 
@@ -186,6 +204,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Country"
                                         type="text"
                                         id="countryCard"
+                                        value={cardDataToSubmit.country}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, country: e.target.value })}
                                     />
                                 </Grid>
 
@@ -199,6 +219,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="City"
                                         type="text"
                                         id="cityCard"
+                                        value={cardDataToSubmit.city}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, city: e.target.value })}
                                     />
                                 </Grid>
 
@@ -212,6 +234,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Street"
                                         type="text"
                                         id="streetCard"
+                                        value={cardDataToSubmit.street}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, street: e.target.value })}
                                     />
                                 </Grid>
 
@@ -225,6 +249,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="House Number"
                                         type="number"
                                         id="houseNumberCard"
+                                        value={cardDataToSubmit.houseNumber}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, houseNumber: e.target.value })}
                                     />
                                 </Grid>
 
@@ -237,6 +263,8 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                         label="Zip"
                                         type="number"
                                         id="zipCard"
+                                        value={cardDataToSubmit.zip}
+                                        onChange={(e) => setCardDataToSubmit({ ...cardDataToSubmit, zip: e.target.value })}
                                     />
                                 </Grid>
 
@@ -249,7 +277,7 @@ const CardsForm = ({ setDisplayCreateCardComp }) => {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
-                                onClick={() => setDisplayCreateCardComp(false)}
+                                onClick={() => onSubmitClick()}
                             >
                                 Submit
                             </Button>

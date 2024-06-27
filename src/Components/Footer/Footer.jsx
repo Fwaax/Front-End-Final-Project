@@ -5,10 +5,13 @@ import MyFavCardPage from '../../Pages/MyFavCardPage';
 import MyCardPage from '../../Pages/MyCardPage';
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { ThemeContext } from '../../App';
 
 
 const Footer = () => {
     const navigate = useNavigate();
+    const { theme, toggleTheme } = useContext(ThemeContext);
 
     function handleAbout() {
         console.log(`handleAbout`);
@@ -26,7 +29,7 @@ const Footer = () => {
     }
 
     return (
-        <div className='footer'>
+        <div className='footer' id={theme}>
 
             <div className='footerDiv' onClick={handleAbout}>
                 <p>About</p>

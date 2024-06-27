@@ -27,17 +27,39 @@
 
 .container {
   display: flex;
-  background-color: #1976d3;
+}
+
+:root {
+  --background-color-light: #1976d3;
+  --background-body-color-light: #e4f2fd;
+  --background-color-dark: #4d4c4c;
+  --background-body-color-dark: #282c34;
+}
+
+
+#light .container {
+  background-color: var(--background-color-light);
+}
+
+#dark .container {
+  background-color: var(--background-color-dark);
 }
 
 .nav {
   display: flex;
   padding: 1em;
   font-weight: bold;
-  color: #fff;
   justify-content: space-between;
   width: 100vw;
   font-size: 1.5em;
+}
+
+#light .nav {
+  color: #fff;
+}
+
+#dark .nav {
+  color: #000;
 }
 
 .navBurger {
@@ -66,6 +88,14 @@ ul {
   list-style-type: none;
 }
 
+#light ul div li {
+  color: #fff;
+}
+
+#dark ul div li {
+  color: #fff;
+}
+
 .link:visited {
   color: #fff;
 }
@@ -87,8 +117,6 @@ ul {
   display: flex;
   gap: 1.5em;
 }
-
-
 
 @media screen and (max-width: 1100px) {
   .nav {
@@ -112,17 +140,27 @@ ul {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    background-color: #1976d3;
     padding: 0.5rem;
     border-radius: 0.3rem;
     font-weight: bold;
-    color: #fff;
     justify-content: space-between;
     width: 6rem;
     font-size: 1rem;
     position: absolute;
     left: 0;
   }
+
+  #light .burgerIcon:hover .navBurger {
+    background-color: var(--background-color-light);
+    color: #fff;
+  }
+
+  #dark .burgerIcon:hover .navBurger {
+    background-color: var(--background-color-dark);
+    color: #fff;
+  }
+
+
 
   .navLeft {
     display: flex;
@@ -149,5 +187,3 @@ ul {
   }
 
 }
-
-@media screen and (max-width: 905px) {}

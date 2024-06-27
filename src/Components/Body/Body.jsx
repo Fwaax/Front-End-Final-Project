@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './Bodyjsx.css'
-import Footer from '../Footer/Footer'
 import CardsContainer from '../Cards/CardsContainer'
 import CardsForm from '../Cards/CardsForm'
 import axios from 'axios'
 import useToken from '../Hooks/UserToken'
+import { ThemeContext } from '../../App'
 
 
 const Body = () => {
@@ -17,12 +17,69 @@ const Body = () => {
 
     const [cards, setCards] = useState([]);
     const [displayCreateCardComp, setDisplayCreateCardComp] = useState(false)
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
+
+    const [cardDataToSubmit, setCardDataToSubmit] = useState({
+
+        "title": ``,
+        "subtitle": ``,
+        "description": ``,
+        "phone": ``,
+        "email": ``,
+        "web": ``,
+        "imgurl": '',
+        "imgalt": '',
+        "state": ``,
+        "country": ``,
+        "city": ``,
+        "street": ``,
+        "houseNumber": ``,
+        "zip": ``
+    });
+
+
+    // https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards POST
+    async function submitButtonClickHandler() {
+        const req = {
+            "title": cardDataToSubmit.title,
+            "subtitle": cardDataToSubmit.subtitle,
+            "description": cardDataToSubmit.description,
+            "phone": cardDataToSubmit.phone,
+            "email": cardDataToSubmit.email,
+            "web": cardDataToSubmit.web,
+            "image": {
+                "url": cardDataToSubmit.imgurl,
+                "alt": cardDataToSubmit.imgalt
+            },
+            "address": {
+                "state": cardDataToSubmit.state,
+                "country": cardDataToSubmit.country,
+                "city": cardDataToSubmit.city,
+                "street": cardDataToSubmit.street,
+                "houseNumber": cardDataToSubmit.houseNumber,
+                "zip": cardDataToSubmit.zip
+            }
+        }
+        try {
+            const apiResponse = await axios.post('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards', req, {
+                headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' }
+            });
+            const newCard = apiResponse.data;
+        } catch (e) {
+            console.log(`An Error Occurd: `, e);
+        }
+    }
+
+
+
+    function cancelButtonClickHandler() { }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const apiResponse = await axios.get('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards');
-                const cardList = apiResponse.data.slice(0, 5);
+                const cardList = apiResponse.data;
                 setCards(cardList);
 
                 const newFavArray = [];
@@ -45,7 +102,8 @@ const Body = () => {
     }, []);
 
     return (
-        <div className='containerBody'>
+
+        <div className='containerBody' id={theme}>
             <div className='containerCards'>
                 <div className='header'>
                     <h1>Cards Page</h1>
@@ -64,7 +122,7 @@ const Body = () => {
                                 <h2 className='cardCreationBtn' onClick={() => setDisplayCreateCardComp(true)}>+</h2>
                             </div>
                             : <div>
-                                <CardsForm setDisplayCreateCardComp={setDisplayCreateCardComp} />
+                                <CardsForm setDisplayCreateCardComp={setDisplayCreateCardComp} onCancelClick={cancelButtonClickHandler} onSubmitClick={submitButtonClickHandler} cardDataToSubmit={cardDataToSubmit} setCardDataToSubmit={setCardDataToSubmit} />
                             </div>
                         }
                     </div>

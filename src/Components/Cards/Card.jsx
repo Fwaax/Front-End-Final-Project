@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './Card.css'
 import useToken from '../Hooks/UserToken';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from '../../App';
 
 const Card = ({ card, refetch }) => {
-    {/* img ,title , subtitle , phone , address , card number */ }
     const navigate = useNavigate();
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
 
 
     const {
@@ -52,10 +54,9 @@ const Card = ({ card, refetch }) => {
     }
 
     return (
-        <div className='cardDiv'>
+        <div className='cardDiv' id={theme}>
             <div className='cardTop'>
                 <img src={card.image?.url} alt={card.image?.alt} className='cardImg' />
-                {/* <div className='cardId'>{card._id}</div> */}
                 <div className='cardTitle'>{card.title}</div>
                 <div className='dividerCard'></div>
                 <div className='cardSubtitle'>{card.subtitle}</div>
@@ -77,12 +78,4 @@ const Card = ({ card, refetch }) => {
 }
 export default Card
 
-// https://www.svgrepo.com/show/506672/phone.svg --- Phone
-// https://www.svgrepo.com/show/433921/bin.svg --- Bin
-// https://www.svgrepo.com/show/488318/pencil-ui.svg --- Pencil
-// https://www.svgrepo.com/show/532473/heart.svg --- Heart
-// https://www.svgrepo.com/show/315933/heart-red.svg --- Red Heart
-// https://www.svgrepo.com/show/486514/about-filled.svg --- About
-// https://www.svgrepo.com/show/497628/user-square.svg --- My Cards
 // https://www.svgrepo.com/
-

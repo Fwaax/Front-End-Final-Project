@@ -64,7 +64,14 @@ function App() {
                     <ul>
                       <div className='navRight'>
                         {/* <li><input type="text" placeholder="Search" /></li> */}
-                        <li><div>Light/Dark mode</div></li>
+                        <li onClick={() => toggleTheme()}><div>
+                          {
+                            theme === 'light' ?
+                              <img className='imgSvg' src="https://www.svgrepo.com/show/521865/sun.svg" alt="Light" />
+                              :
+                              <img className='imgSvg moonSvg' src="https://www.svgrepo.com/show/121031/moon.svg" alt="Dark" />
+                          }
+                        </div></li>
                         {!userToken.token ? (
                           <div className='rightNavLogContainer'>
                             <li><Link className='link' to="/login">Login</Link></li>

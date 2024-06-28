@@ -38,9 +38,8 @@ const Body = () => {
         "zip": ``
     });
 
-
-    // https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards POST
     async function submitButtonClickHandler() {
+        setDisplayCreateCardComp(true);
         const req = {
             "title": cardDataToSubmit.title,
             "subtitle": cardDataToSubmit.subtitle,
@@ -66,14 +65,15 @@ const Body = () => {
                 headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' }
             });
             const newCard = apiResponse.data;
+            setDisplayCreateCardComp(false);
         } catch (e) {
             console.log(`An Error Occurd: `, e);
         }
     }
 
-
-
-    function cancelButtonClickHandler() { }
+    function cancelButtonClickHandler() {
+        setDisplayCreateCardComp(false);
+    }
 
     useEffect(() => {
         const fetchData = async () => {

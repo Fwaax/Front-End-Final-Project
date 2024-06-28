@@ -287,7 +287,7 @@ const CardsForm = ({ setDisplayCreateCardComp, cardDataToSubmit, setCardDataToSu
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
-                                    onClick={() => setDisplayCreateCardComp(false)}
+                                    onClick={() => onCancelClick()}
                                 >
                                     Cancel
                                 </Button>

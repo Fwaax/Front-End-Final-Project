@@ -118,6 +118,15 @@ ul {
   gap: 1.5em;
 }
 
+#dark .textField {
+  background-color: var(--background-body-color-light);
+}
+
+#dark .formButton {
+  background-color: var(--background-body-color-light);
+  color: #000;
+}
+
 @media screen and (max-width: 1100px) {
   .nav {
     display: none
@@ -187,3 +196,5 @@ ul {
   }
 
 }
+
+@media screen and (max-width: 904px) {}

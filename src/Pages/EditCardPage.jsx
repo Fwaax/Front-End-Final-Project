@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import useToken from '../Components/Hooks/UserToken';
 import Card from '../Components/Cards/Card';
 import EditCardsForm from '../Components/Cards/EditCardForm';
 import { useQuery } from "@tanstack/react-query";
+import { ThemeContext } from '../App';
+import './EditCardPage.css'
 
 const EditCardPage = ({ match }) => {
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
     const [cardDataToEdit, setCardDataToEdit] = useState({  // new data on fields
 
         "title": ``,
@@ -126,11 +130,11 @@ const EditCardPage = ({ match }) => {
         return (<div>You are not authorized to edit this card</div>)
     }
     return (
-        <div>
-            <p>cardId: {cardId}</p>
-            <Card card={fetchedCardData} />
-            <EditCardsForm cardDataToEdit={cardDataToEdit} setCardDataToEdit={setCardDataToEdit} onEditClick={sendUpdateCardData} onCancelClick={() => resetData(fetchedCardData)} />
-
+        <div id={theme}>
+            <div className='editCardPageDiv'>
+                <Card card={fetchedCardData} />
+                <EditCardsForm cardDataToEdit={cardDataToEdit} setCardDataToEdit={setCardDataToEdit} onEditClick={sendUpdateCardData} onCancelClick={() => resetData(fetchedCardData)} />
+            </div>
         </div>
     )
 }

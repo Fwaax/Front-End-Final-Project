@@ -72,6 +72,7 @@
     width: 25em;
 }
 
+
 .cardCreationBtn {
     border-radius: 50%;
     height: 2em;
@@ -106,5 +107,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .cardCreation {
+        width: 100vw;
     }
 }

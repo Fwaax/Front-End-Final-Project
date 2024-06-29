@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function stringToBoolean(string) {
     if (typeof string == "string") {
@@ -94,10 +94,8 @@ export default function SignUp() {
 
         const json = formToJSON(data)
         axios.post(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users`, json).then(reponse => {
-            console.log(reponse.status);
         }).catch(error => {
             setErrorMsg("The Form wasn't filled correctly")
-            console.error(error.message);
         })
     };
 

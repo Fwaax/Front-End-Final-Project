@@ -28,10 +28,9 @@ const MyFavCardPage = () => {
                     newFavArray.push(card)
                 }
             });
-            console.log(`newFavArray: `, newFavArray);
             setFavArr(newFavArray);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            return;
         }
     };
 
@@ -42,8 +41,6 @@ const MyFavCardPage = () => {
             fetchData(userToken?.decodedToken?.payload?._id);
         }
     }, []);
-
-    console.log(`favArr in MyFavCard line 44`, favArr);
 
     return (
 

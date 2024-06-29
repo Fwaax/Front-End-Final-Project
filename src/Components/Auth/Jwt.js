@@ -3,12 +3,11 @@ import { decode } from "base-64";
 function base64UrlDecode(input) {
     let base64 = input
     let padded = ''
-    console.log(`JWT.JS : ${input}`);
     try {
         base64 = input.replace(/-/g, '+').replace(/_/g, '/');
         padded = base64.padEnd(base64.length + (4 - base64.length % 4) % 4, '=');
     } catch (error) {
-        console.log(`base64.error : ${error}`);
+        return;
     }
 
     return decode(padded);
@@ -27,40 +26,24 @@ function parseJWT(token) {
 }
 
 function base64alt(str) {
-    // Replace URL-safe characters with base64 standard characters
     let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
 
-    // Add padding if necessary
-    // while (base64.length % 4) {
-    //     base64 += '=';
-    // }
-
     try {
-        // Decode base64 string
-        console.log(`Window???? : ${base64}`);
         return decodeURIComponent(decode(base64));
     } catch (e) {
-        console.error('Failed to decode base64 string:', e);
         return null;
     }
 }
 
 function base64Decode(base64) {
-    // Define the base64 characters
     const base64Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-    // Replace URL-safe characters with standard base64 characters if needed
     base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
-
-    // Add padding if necessary
     while (base64.length % 4) {
         base64 += '=';
     }
 
     let output = '';
     let buffer;
-
-    // Decode each set of 4 base64 characters into 3 bytes
     for (let i = 0; i < base64.length; i += 4) {
         buffer =
             (base64Chars.indexOf(base64.charAt(i)) << 18) |

@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Copyright(props) {
     return (
@@ -67,9 +67,6 @@ function formToJSON(form) {
 
 const defaultTheme = createTheme();
 
-// https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users
-
-
 export default function SignUp() {
 
     const [errorMsg, setErrorMsg] = useState('');
@@ -80,10 +77,8 @@ export default function SignUp() {
 
         const json = formToJSON(data)
         axios.post(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users`, json).then(reponse => {
-            console.log(reponse.status);
         }).catch(error => {
             setErrorMsg("The Form wasn't filled correctly")
-            console.error(error.message);
         })
     };
 
@@ -107,185 +102,50 @@ export default function SignUp() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-
-                            {/* ------------- First Name ---------------- */}
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-
-                            {/* ------------- Middle Name ---------------- */}
-
+                                    autoComplete="given-name" name="firstName" required fullWidth
+                                    id="firstName" label="First Name" autoFocus /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    autoComplete="given-name"
-                                    name="middleName"
-                                    fullWidth
-                                    id="middleName"
-                                    label="Middle Name"
-                                    autoFocus
-                                />
-                            </Grid>
-
-                            {/* ------------- Last Name ---------------- */}
-
+                                    autoComplete="given-name" name="middleName" fullWidth
+                                    id="middleName" label="Middle Name" autoFocus /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                />
-                            </Grid>
-
-                            {/* ------------- Phone ---------------- */}
-
+                                    required fullWidth id="lastName" label="Last Name" name="lastName" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    id="phone"
-                                    label="Phone"
-                                    type="number"
-                                    name="phone"
-                                />
-                            </Grid>
-
-                            {/* ------------- Email ---------------- */}
-
+                                    required fullWidth id="phone" label="Phone" type="number" name="phone" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                />
-                            </Grid>
-
-                            {/* ------------- Password ---------------- */}
-
+                                    required fullWidth id="email" label="Email Address" name="email" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                />
-                            </Grid>
-
-                            {/* ------------- Image url ---------------- */}
-
+                                    required fullWidth name="password" label="Password" type="password" id="password" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    fullWidth
-                                    name="imgurl"
-                                    label="Img URL"
-                                    type="url"
-                                    id="imgurl"
-                                />
-                            </Grid>
-
-                            {/* ------------- Image alt ---------------- */}
-
+                                    fullWidth name="imgurl" label="Img URL" type="url" id="imgurl" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    fullWidth
-                                    name="imgalt"
-                                    label="Img ALT"
-                                    type="text"
-                                    id="imgalt"
-                                />
-                            </Grid>
-
-                            {/* ------------- State ---------------- */}
-
+                                    fullWidth name="imgalt" label="Img ALT" type="text" id="imgalt" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    fullWidth
-                                    name="state"
-                                    label="State"
-                                    type="text"
-                                    id="State"
-                                />
-                            </Grid>
-
-                            {/* ------------- Country ---------------- */}
-
+                                    fullWidth name="state" label="State" type="text" id="State" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    name="country"
-                                    label="Country"
-                                    type="text"
-                                    id="country"
-                                />
-                            </Grid>
-
-                            {/* ------------- City ---------------- */}
-
+                                    required fullWidth name="country" label="Country" type="text" id="country" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    name="city"
-                                    label="City"
-                                    type="text"
-                                    id="city"
-                                />
-                            </Grid>
-
-                            {/* ------------- Street ---------------- */}
-
+                                    required fullWidth name="city" label="City" type="text" id="city" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    name="street"
-                                    label="Street"
-                                    type="text"
-                                    id="street"
-                                />
-                            </Grid>
-
-                            {/* ------------- House Number ---------------- */}
-
+                                    required fullWidth name="street" label="Street" type="text" id="street" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    required
-                                    fullWidth
-                                    name="houseNumber"
-                                    label="House Number"
-                                    type="number"
-                                    id="houseNumber"
-                                />
-                            </Grid>
-
-                            {/* ------------- Zip ---------------- */}
-
+                                    required fullWidth name="houseNumber" label="House Number" type="number" id="houseNumber" /> </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    fullWidth
-                                    name="zip"
-                                    label="Zip"
-                                    type="number"
-                                    id="zip"
-                                />
-                            </Grid>
-
-
-                            {/* --------------------------------------------- */}
+                                    fullWidth name="zip" label="Zip" type="number" id="zip" /> </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="true" color="primary" name="isBusiness" />}

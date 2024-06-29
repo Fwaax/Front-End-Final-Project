@@ -13,19 +13,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useState } from 'react';
 import { parseJWT, base64UrlDecode, base64alt } from './Jwt';
-import { jwtDecode } from 'jwt-decode';
-import useToken from '../Hooks/UserToken';
 import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function Login({ setIsLoged, isLoged, setUserLoggedForImg, setLogSuccessful, setUserToken }) {
-
-    // const {
-    //     setUserToken,
-    //     userToken,
-    //     removeToken
-    // } = useToken();
 
     const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
@@ -49,7 +41,6 @@ export default function Login({ setIsLoged, isLoged, setUserLoggedForImg, setLog
         const apiResponse = await axios.get(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${userID}`, { headers: { "x-auth-token": token } });
         const userImgUrl = apiResponse.data.image.url;
         localStorage.setItem(`imgUrl`, userImgUrl)
-        console.log(`userImgUrl: `, userImgUrl);
         setUserLoggedForImg(userImgUrl);
     }
 
@@ -65,18 +56,15 @@ export default function Login({ setIsLoged, isLoged, setUserLoggedForImg, setLog
             const url = `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login`
             const token = await asyncPost(url, json);
             isLoged = true;
-            console.log(`isLoged(must be true)`, isLoged);
-            console.log(`token line 70`, token);
             if (token == null) {
                 return
             }
             setUserToken(token);
-            console.log(`setUserToken: `, setUserToken);
             getImgFromId(token);
             navigate("/");
         }
         catch (err) {
-            console.log(err);
+            return;
         }
     };
 

@@ -63,7 +63,6 @@ function App() {
 
                     <ul>
                       <div className='navRight'>
-                        {/* <li><input type="text" placeholder="Search" /></li> */}
                         <li onClick={() => toggleTheme()}><div>
                           {
                             theme === 'light' ?
@@ -105,7 +104,7 @@ function App() {
 
                 <ul>
                   <div className='navRight'>
-                    <li><input type="text" placeholder="Search" /></li>
+                    <li><input type="text" placeholder="Search" className='searchBar' /></li>
 
                     <li onClick={() => toggleTheme()}><div>
                       {

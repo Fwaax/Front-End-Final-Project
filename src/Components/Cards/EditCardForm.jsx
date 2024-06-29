@@ -20,10 +20,6 @@ const EditCardsForm = ({ cardDataToEdit, setCardDataToEdit, onEditClick, onCance
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            title: data.get('title'),
-            subtitle: data.get('subtitle'),
-        });
         const cardObj = new Card(data.get('title'),
             data.get('subtitle'),
             data.get('description'),

@@ -67,7 +67,7 @@ const Body = () => {
             const newCard = apiResponse.data;
             setDisplayCreateCardComp(false);
         } catch (e) {
-            console.log(`An Error Occurd: `, e);
+            return;
         }
     }
 
@@ -89,10 +89,9 @@ const Body = () => {
                         newFavArray.push(card._id)
                     }
                 });
-                console.log(`newFavArray: `, newFavArray);
 
             } catch (error) {
-                console.error('Error fetching data:', error);
+                return;
             }
         };
 

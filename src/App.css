@@ -47,11 +47,11 @@
 
 .nav {
   display: flex;
-  padding: 1em;
+  padding: 0.5em;
   font-weight: bold;
   justify-content: space-between;
   width: 100vw;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #light .nav {
@@ -60,6 +60,15 @@
 
 #dark .nav {
   color: #000;
+}
+
+.searchBar {
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5em;
+  color: #fff;
+  width: 100%;
 }
 
 .navBurger {

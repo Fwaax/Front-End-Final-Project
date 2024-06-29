@@ -30,7 +30,7 @@ const MyCardsContainer = () => {
                 const cardList = apiResponse.data;
                 setCards(cardList);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                return;
             }
         };
 

@@ -29,7 +29,6 @@ const EditCardPage = ({ match }) => {
         "zip": ``
     });
     const { cardId } = useParams();
-    console.log(cardId);
 
     const {
         setUserToken,
@@ -48,11 +47,9 @@ const EditCardPage = ({ match }) => {
                 const apiResponse = await axios.get(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, {
                     headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' }
                 });
-                console.log(`apiResponse edit in Quary: `, apiResponse);
                 resetData(apiResponse.data)
                 return apiResponse.data;
             } catch (e) {
-                console.log(`An Error Occurd: `, e);
                 return null;
             }
         },
@@ -85,16 +82,14 @@ const EditCardPage = ({ match }) => {
             const apiResponse = await axios.put(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, req, {
                 headers: { "x-auth-token": userToken.token, 'Content-Type': 'application/json' },
             });
-            console.log(`apiResponse edit 2: `, apiResponse);
             refetchCardData();
         } catch (e) {
-            console.log(`An Error Occurd: `, e);
+            return;
         }
     }
 
     function resetData(cardDataToSet) {
         if (!cardDataToSet) {
-            console.log(`cardDataToSet is Undefined Cannot procced:`, cardDataToSet);
             return
         }
         setCardDataToEdit({

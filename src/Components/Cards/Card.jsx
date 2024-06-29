@@ -23,10 +23,7 @@ const Card = ({ card, refetch }) => {
     async function handleClick() {
         const token = userToken.token;
         const apiResponse = await axios.patch(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${card._id}`, {}, { headers: { "x-auth-token": token } });
-        console.log(`apiResponse: `, apiResponse);
         const userIDsThatLikedThisCard = apiResponse.data.likes;
-        console.log(`Here`);
-        console.log(userIDsThatLikedThisCard, userToken);
         if (userIDsThatLikedThisCard.includes(userToken.decodedToken.payload._id)) {
             setIsLiked(true);
         }
@@ -44,13 +41,10 @@ const Card = ({ card, refetch }) => {
     }
 
     async function handleDelete() {
-        console.log(`card.addres._id in delete handle: `, card.address._id);
         if (userToken.decodedToken.payload.isAdmin !== true && userToken.decodedToken.payload._id !== card.address._id) {
-            console.log(`User is not utherized`);
             return
         }
         const apiResponse = await axios.delete(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${card._id}`, { headers: { "x-auth-token": userToken.token } });
-        console.log(`deleting a card`, apiResponse.status);
     }
 
     return (

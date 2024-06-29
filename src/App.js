@@ -7,7 +7,7 @@ import useToken from './Components/Hooks/UserToken';
 import MyCardPage from './Pages/MyCardPage';
 import MyFavCardPage from './Pages/MyFavCardPage';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import EditCardPage from './Pages/EditCardPage';
 import {
   QueryClient,
@@ -22,11 +22,17 @@ function App() {
   const [UserLoggedForImg, setUserLoggedForImg] = useState(localStorage.getItem(`imgUrl`));
   const [isLoged, setIsLoged] = useState(false);
   const queryClient = new QueryClient();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'light';
+  });
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const {
     setUserToken,
